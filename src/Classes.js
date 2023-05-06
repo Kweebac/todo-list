@@ -1,3 +1,5 @@
+const current = {};
+
 class Project {
   constructor(name) {
     this.name = name;
@@ -13,6 +15,10 @@ class Project {
   }
   getName() {
     return this.name;
+  }
+
+  static getCurrentProject() {
+    console.log("hi");
   }
 }
 
@@ -38,4 +44,4 @@ class Task {
   }
 }
 
-export { Project, Task };
+export { current, Project, Task };

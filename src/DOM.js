@@ -1,11 +1,11 @@
-import { showForm, hideForm } from "./DOMform";
+import { renderForm, unrenderForm } from "./DOMform";
 import { createTask } from "./DOMcreateTask";
 import { removeTask } from "./DOMremoveTask";
 
 const DOM = {
   form: {
-    show: showForm,
-    hide: hideForm,
+    render: renderForm,
+    unrender: unrenderForm,
   },
   task: {
     create: createTask,

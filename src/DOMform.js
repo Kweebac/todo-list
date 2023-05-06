@@ -1,10 +1,10 @@
 const form = document.querySelector("form");
 
-function showForm() {
+function renderForm() {
   form.style.visibility = "visible";
 }
-function hideForm() {
+function unrenderForm() {
   form.style.visibility = "hidden";
 }
 
-export { showForm, hideForm };
+export { renderForm, unrenderForm };
