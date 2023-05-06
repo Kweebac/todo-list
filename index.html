@@ -41,7 +41,9 @@
         <div class="task">
           <input type="checkbox" />
           <div>
-            <div id="title">Clean bathroom</div>
+            <div id="title">
+              Alfie & Breanna cuddling is equal to happiness :)
+            </div>
             <div id="dueDate">In 4 hours</div>
           </div>
           <div>✖</div>
@@ -66,11 +68,12 @@
         <input type="datetime-local" name="dueDate" id="dueDate" />
       </div>
       <div>
-        <label for="">Priority</label>
-        <select name="" id="">
-          <option value="priority1">Urgent</option>
-          <option value="priority2">Important</option>
-          <option value="priority3" selected>Unimportant</option>
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority">
+          <option value="none" selected>Select priority</option>
+          <option value="urgent">Urgent</option>
+          <option value="important">Important</option>
+          <option value="unimportant">Unimportant</option>
         </select>
       </div>
       <button>Submit</button>
