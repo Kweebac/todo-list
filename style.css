@@ -1,0 +1,99 @@
+body {
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-auto-rows: auto 1fr;
+}
+
+/* HEADER */
+header {
+  background-color: #2563eb;
+  padding: 0.8rem;
+
+  display: grid;
+  justify-content: end;
+}
+header > div {
+  margin-right: 3rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+header > div > div {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: white;
+}
+header img {
+  height: 1.5rem;
+  width: 100%;
+}
+
+/* CONTENT */
+body > div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto 1fr;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 1.7rem;
+  width: 12rem;
+  background-color: #f0f0f0;
+}
+
+.sidebar > div:first-child {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar > div:first-child:hover,
+.sidebar > .project:hover {
+  background-color: #dedede;
+}
+.sidebar > div:first-child > div:first-child {
+  font-weight: bold;
+}
+.sidebar > div:first-child > div:last-child {
+  width: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(202, 152, 248);
+  font-size: 1.3rem;
+}
+.sidebar > div:first-child > div:last-child:hover {
+  color: rgb(72, 72, 255);
+}
+
+.sidebar > .project {
+  padding: 0.15rem;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.2rem;
+}
+.sidebar > .project > svg {
+  height: 1.3rem;
+}
+.sidebar > .project > div {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* MAIN */
+.main {
+}
