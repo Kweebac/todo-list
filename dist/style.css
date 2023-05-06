@@ -76,6 +76,7 @@ body > div {
 }
 
 .sidebar > .project {
+  cursor: pointer;
   padding: 0.15rem;
   border-radius: 0.5rem;
   padding-left: 1rem;
@@ -91,9 +92,86 @@ body > div {
 }
 .sidebar > .project > div {
   font-size: 0.9rem;
-  cursor: pointer;
 }
 
 /* MAIN */
 .main {
+  margin-left: 15%;
+  margin-top: 4rem;
+
+  display: grid;
+  justify-items: start;
+  align-content: start;
+}
+.main > div:first-child {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.main > div:last-child {
+  padding-right: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-left: 1.13rem;
+  display: grid;
+
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.main > div:last-child > div:first-child {
+  text-align: center;
+  width: 1.7rem;
+  color: blue;
+  font-size: 1.5rem;
+}
+.main > div:last-child > div:last-child {
+  color: rgb(189, 189, 189);
+  position: relative;
+  top: 1px;
+}
+.main > div:last-child:hover > div:first-child {
+  background-color: #2563eb;
+  color: white;
+  border-radius: 50%;
+}
+.main > div:last-child:hover > div:last-child {
+  color: #2563eb;
+}
+
+/* TASKS */
+.tasks {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tasks input {
+  width: 1rem;
+  height: 1rem;
+}
+.tasks > div:nth-child(2) > div:first-child {
+  font-size: 1.2rem;
+}
+.tasks > div:nth-child(2) > div:last-child {
+  color: blue;
+}
+.tasks > div:last-child {
+  display: grid;
+
+  font-size: 0.9rem;
+  height: 1.3rem;
+  width: 1.3rem;
+  margin-left: 5vw;
+  color: rgb(189, 189, 189);
+  place-items: center;
+}
+.tasks > div:last-child:hover {
+  background-color: rgb(255, 79, 79);
+  border-radius: 50%;
 }
