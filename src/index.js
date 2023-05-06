@@ -15,9 +15,5 @@ import { DOM } from "./DOM";
 document
   .querySelector(".main > div:last-child")
   .addEventListener("click", () => {
-    console.log("hi");
-    const form = document.querySelector(".form");
-    form.setAttribute("visibility", "visible");
-
-    // DOM.form.show();
+    DOM.form.show();
   });

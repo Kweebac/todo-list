@@ -1,11 +1,10 @@
-const formClass = document.querySelector(".form");
+const form = document.querySelector("form");
 
 function showForm() {
-  // formClass.removeAttribute("visibility");
-  formClass.setAttribute("visibility", "visible");
+  form.style.visibility = "visible";
 }
 function hideForm() {
-  formClass.setAttribute("visibility", "hidden");
+  form.style.visibility = "hidden";
 }
 
 export { showForm, hideForm };
