@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="./normalize.css" />
     <link rel="stylesheet" href="./style.css" />
-    <script src="./main.js"></script>
+    <script src="./main.js" defer></script>
   </head>
 
   <body>
@@ -38,11 +38,11 @@
       </div>
       <div class="main">
         <div>Project name</div>
-        <div class="tasks">
+        <div class="task">
           <input type="checkbox" />
           <div>
-            <div>Clean bathroom</div>
-            <div>In 4 hours</div>
+            <div id="title">Clean bathroom</div>
+            <div id="dueDate">In 4 hours</div>
           </div>
           <div>✖</div>
         </div>
@@ -51,6 +51,31 @@
           <div>Add task</div>
         </div>
       </div>
+    </div>
+    <div class="form">
+      <form action="">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required />
+        </div>
+        <div>
+          <label for="desc">Description</label>
+          <textarea name="desc" id="desc" cols="30" rows="5"></textarea>
+        </div>
+        <div>
+          <label for="dueDate">Due date</label>
+          <input type="datetime-local" name="dueDate" id="dueDate" />
+        </div>
+        <div>
+          <label for="">Priority</label>
+          <select name="" id="">
+            <option value="priority1">Urgent</option>
+            <option value="priority2">Important</option>
+            <option value="priority3" selected>Unimportant</option>
+          </select>
+        </div>
+        <button>Submit</button>
+      </form>
     </div>
   </body>
 </html>
