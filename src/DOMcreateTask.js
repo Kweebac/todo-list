@@ -1,3 +1,5 @@
+import { current } from "./Classes";
+
 const mainDiv = document.querySelector(".main");
 
 function createTask(object) {
@@ -9,7 +11,7 @@ function createTask(object) {
       <div id="title"></div>
       <div id="dueDate"></div>
     </div>
-    <div>✖</div>`;
+    <div data-index="${current.project.getTasks().length - 1}">✖</div>`;
 
   newDiv.querySelector("#title").textContent = object.getTitle();
   newDiv.querySelector("#dueDate").textContent = object.getDueDate();

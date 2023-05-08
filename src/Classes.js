@@ -9,16 +9,15 @@ class Project {
   addTask(object) {
     this.tasks.push(object);
   }
+  removeTask(event) {
+    this.tasks[event.target.getAttribute("data-index")] = "hi";
+  }
 
   getTasks() {
     return this.tasks;
   }
   getName() {
     return this.name;
-  }
-
-  static getCurrentProject() {
-    console.log("hi");
   }
 }
 
