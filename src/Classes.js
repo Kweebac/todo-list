@@ -10,7 +10,16 @@ class Project {
     this.tasks.push(object);
   }
   removeTask(event) {
-    this.tasks[event.target.getAttribute("data-index")] = "hi";
+    const tasks = document.querySelectorAll(".task > div:last-child");
+
+    for (let i = 0; i < tasks.length; i++) {
+      if (
+        tasks[i].getAttribute("data-index") ===
+        event.target.getAttribute("data-index")
+      ) {
+        this.tasks.splice(i, 1);
+      }
+    }
   }
 
   getTasks() {

@@ -26,7 +26,14 @@ document
   .querySelector(".main > div:last-child")
   .addEventListener("click", () => {
     DOM.form.render();
+    document.querySelector("input[type=text]").focus();
   });
+
+// on "Form ✖ click"
+// hides form
+document
+  .querySelector("form > div:first-child")
+  .addEventListener("click", DOM.form.unrender);
 
 // on submit form click
 // converts form inputs into a task inside the current project, then gets rid of the menu, then adds the task in the UI
@@ -48,16 +55,15 @@ document.querySelector("form button").addEventListener("click", (e) => {
     current.project.getTasks()[current.project.getTasks().length - 1]
   );
 
-  /* expands tasks on click - NOT FINISHED
-  document.querySelectorAll(".task").forEach((task) => {
-    task.addEventListener("click", () => {});
-  }); */
+  // expands tasks on click - NOT FINISHED
+  document
+    .querySelectorAll(".task")
+    [tasks.length - 1].addEventListener("click", () => {});
 
   // removes task on click
   const tasks = document.querySelectorAll(".task > div:last-child");
 
   tasks[tasks.length - 1].addEventListener("click", (event) => {
-    // adds event listener to newly created task
     current.project.removeTask(event);
     DOM.task.remove(event);
   });
