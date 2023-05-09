@@ -178,7 +178,7 @@ body > div {
   height: 1.3rem;
   width: 1.3rem;
   margin-left: 5vw;
-  color: rgb(189, 189, 189);
+  color: rgb(154, 154, 154);
 
   display: grid;
   place-items: center;
@@ -210,6 +210,26 @@ form > div {
   grid-template-columns: 5rem 1fr;
   align-items: center;
   gap: 0.5rem;
+}
+
+form > div:first-child {
+  position: absolute;
+  top: 8px;
+  left: 11px;
+
+  font-size: 1.1rem;
+  color: rgb(154, 154, 154);
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+
+  display: grid;
+  grid-template-columns: auto;
+  place-items: center;
+}
+form > div:first-child:hover {
+  background-color: rgb(255, 79, 79);
+  border-radius: 50%;
 }
 
 form label {
