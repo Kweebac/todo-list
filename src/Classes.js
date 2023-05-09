@@ -17,7 +17,7 @@ class Project {
         tasksXButton[i].getAttribute("data-index") ===
         event.currentTarget.getAttribute("data-index")
       ) {
-        this.tasks.splice(i, 1);
+        this.tasks[event.currentTarget.getAttribute("data-index")] = "";
       }
     }
   }

@@ -1,6 +1,7 @@
 import { current } from "./Classes";
 
 function extendTask(event) {
+  console.log("Extended task"); //REMOVE
   let tasks = document.querySelectorAll(".task");
 
   for (let i = 0; i < tasks.length; i++) {
@@ -8,6 +9,11 @@ function extendTask(event) {
       tasks[i].getAttribute("data-index") ===
       event.currentTarget.getAttribute("data-index")
     ) {
+      console.log(
+        // REMOVE
+        current.project.getTasks()[tasks[i].getAttribute("data-index")]
+      );
+
       const newDiv = document.createElement("div");
       newDiv.id = "desc";
       newDiv.textContent =
@@ -24,6 +30,7 @@ function extendTask(event) {
 }
 
 function unextendTask(event) {
+  console.log("Unextended task"); //REMOVE
   let tasks = document.querySelectorAll(".task");
 
   for (let i = 0; i < tasks.length; i++) {
@@ -37,8 +44,3 @@ function unextendTask(event) {
 }
 
 export { extendTask, unextendTask };
-
-// when remove the element, also
-/* create 1, 2
-delete 1
-create 3, then both are linked */

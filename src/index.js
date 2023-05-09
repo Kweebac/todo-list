@@ -71,6 +71,7 @@ document.querySelector("form button").addEventListener("click", (e) => {
   const tasksXButton = document.querySelectorAll(".task > div:last-child");
 
   tasksXButton[tasksXButton.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
     current.project.removeTask(event);
     DOM.task.remove(event);
   });

@@ -1,6 +1,7 @@
 import { current } from "./Classes";
 
 function removeTask(event) {
+  console.log("Removed task"); //REMOVE
   const tasksXButton = document.querySelectorAll(".task > div:last-child");
 
   for (let i = 0; i < tasksXButton.length; i++) {
