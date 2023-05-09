@@ -9,8 +9,6 @@ and puts the new one
 click add task, form pops up, take form answers and put it into a new Task,
  which is saved to project, use it add to DOM
 
- add x button to form
-
  add colors for tasks based on priority
 */
 
@@ -55,15 +53,24 @@ document.querySelector("form button").addEventListener("click", (e) => {
     current.project.getTasks()[current.project.getTasks().length - 1]
   );
 
-  // expands tasks on click - NOT FINISHED
-  document
-    .querySelectorAll(".task")
-    [tasks.length - 1].addEventListener("click", () => {});
-
-  // removes task on click
-  const tasks = document.querySelectorAll(".task > div:last-child");
+  // expands tasks on click
+  const tasks = document.querySelectorAll(".task");
+  let extended = false;
 
   tasks[tasks.length - 1].addEventListener("click", (event) => {
+    if (extended === false) {
+      DOM.task.change.extend(event);
+      extended = true;
+    } else {
+      DOM.task.change.unextend(event);
+      extended = false;
+    }
+  });
+
+  // removes task on click
+  const tasksXButton = document.querySelectorAll(".task > div:last-child");
+
+  tasksXButton[tasksXButton.length - 1].addEventListener("click", (event) => {
     current.project.removeTask(event);
     DOM.task.remove(event);
   });

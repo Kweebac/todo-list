@@ -188,6 +188,10 @@ body > div {
   border-radius: 50%;
 }
 
+.task #desc {
+  max-width: 35rem;
+}
+
 /* FORM */
 form {
   position: absolute;

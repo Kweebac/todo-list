@@ -1,6 +1,7 @@
 import { renderForm, unrenderForm } from "./DOMform";
 import { createTask } from "./DOMcreateTask";
 import { removeTask } from "./DOMremoveTask";
+import { extendTask, unextendTask } from "./DOMchangeTask";
 
 const DOM = {
   form: {
@@ -10,6 +11,10 @@ const DOM = {
   task: {
     create: createTask,
     remove: removeTask,
+    change: {
+      extend: extendTask,
+      unextend: unextendTask,
+    },
   },
 };
 

@@ -5,6 +5,10 @@ const mainDiv = document.querySelector(".main");
 function createTask(object) {
   const newDiv = document.createElement("div");
   newDiv.classList.add("task");
+  newDiv.setAttribute(
+    "data-index",
+    `${current.project.getTasks().length - 1}`
+  );
   newDiv.innerHTML = `
     <input type="checkbox" />
     <div>

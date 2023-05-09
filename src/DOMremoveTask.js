@@ -1,12 +1,12 @@
 import { current } from "./Classes";
 
 function removeTask(event) {
-  const tasks = document.querySelectorAll(".task > div:last-child");
+  const tasksXButton = document.querySelectorAll(".task > div:last-child");
 
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < tasksXButton.length; i++) {
     if (
-      tasks[i].getAttribute("data-index") ===
-      event.target.getAttribute("data-index")
+      tasksXButton[i].getAttribute("data-index") ===
+      event.currentTarget.getAttribute("data-index")
     ) {
       document
         .querySelector(".main")
