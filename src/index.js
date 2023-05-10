@@ -16,20 +16,16 @@ import { current, Project, Task } from "./Classes";
 let defaultProject = new Project("Default");
 current.project = defaultProject;
 
-// on "Add task" click
+// on Add task click
 // shows form
-document
-  .querySelector(".main > div:last-child")
-  .addEventListener("click", () => {
-    DOM.form.render();
-    document.querySelector("input[type=text]").focus();
-  });
+document.querySelector(".main > div:last-child").addEventListener("click", () => {
+  DOM.form.render();
+  document.querySelector("input[type=text]").focus();
+});
 
-// on "Form ✖ click"
+// on Form ✖ click
 // hides form
-document
-  .querySelector("form > div:first-child")
-  .addEventListener("click", DOM.form.unrender);
+document.querySelector("form > div:first-child").addEventListener("click", DOM.form.unrender);
 
 // on submit form click
 // converts form inputs into a task inside the current project, then gets rid of the menu, then adds the task in the UI
@@ -47,9 +43,7 @@ document.querySelector("form button").addEventListener("click", (e) => {
 
   DOM.form.unrender();
 
-  DOM.task.create(
-    current.project.getTasks()[current.project.getTasks().length - 1]
-  );
+  DOM.task.create(current.project.getTasks()[current.project.getTasks().length - 1]);
 
   // expands tasks on click
   const tasks = document.querySelectorAll(".task");
@@ -65,10 +59,22 @@ document.querySelector("form button").addEventListener("click", (e) => {
     }
   });
 
-  // removes task on click
+  // on Task ✖ click
+  // removes task
   const tasksXButton = document.querySelectorAll(".task > div:last-child");
 
   tasksXButton[tasksXButton.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    DOM.task.remove(event);
+    current.project.removeTask(event);
+  });
+
+  // on Checkbox click
+  // removes task
+  const checkboxButtons = document.querySelectorAll(".task > input[type=checkbox]");
+
+  checkboxButtons[checkboxButtons.length - 1].addEventListener("click", (event) => {
     event.stopPropagation();
 
     DOM.task.remove(event);

@@ -18,9 +18,7 @@ function extendTask(event) {
 function unextendTask(event) {
   for (let i = 0; i < current.project.getTasks().length; i++) {
     if (current.project.getTasks()[i].id === event.currentTarget.id) {
-      event.currentTarget.children[1].removeChild(
-        event.currentTarget.children[1].children[1]
-      );
+      event.currentTarget.children[1].removeChild(event.currentTarget.children[1].children[1]);
     }
   }
 }
