@@ -147,6 +147,7 @@ body > div {
 
 /* TASKS */
 .task {
+  border-radius: 10px;
   cursor: pointer;
   padding: 0.4rem;
   margin-left: 1.5rem;
