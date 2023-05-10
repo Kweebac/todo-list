@@ -1,5 +1,4 @@
-/* 
-make a defaultProject project and let them create other projects 
+/* make a defaultProject project and let them create other projects 
 
 modules: create new todo items, set todo items as complete, change todo priority,
 UI: view projects with todos inside, expend each todo, delete a todo
@@ -7,10 +6,9 @@ When clicking each project it removes the current project UI
 and puts the new one
 
 click add task, form pops up, take form answers and put it into a new Task,
- which is saved to project, use it add to DOM
+which is saved to project, use it add to DOM
 
- add colors for tasks based on priority
-*/
+add colors for tasks based on priority */
 
 import { DOM } from "./DOM";
 import { current, Project, Task } from "./Classes";
@@ -72,7 +70,8 @@ document.querySelector("form button").addEventListener("click", (e) => {
 
   tasksXButton[tasksXButton.length - 1].addEventListener("click", (event) => {
     event.stopPropagation();
-    current.project.removeTask(event);
+
     DOM.task.remove(event);
+    current.project.removeTask(event);
   });
 });

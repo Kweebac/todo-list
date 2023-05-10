@@ -1,13 +1,9 @@
 import { current } from "./Classes";
 
 function removeTask(event) {
-  console.log("Removed task"); //REMOVE
-  const tasksXButton = document.querySelectorAll(".task > div:last-child");
-
-  for (let i = 0; i < tasksXButton.length; i++) {
+  for (let i = 0; i < current.project.getTasks().length; i++) {
     if (
-      tasksXButton[i].getAttribute("data-index") ===
-      event.currentTarget.getAttribute("data-index")
+      current.project.getTasks()[i].id === event.currentTarget.parentNode.id
     ) {
       document
         .querySelector(".main")

@@ -10,14 +10,9 @@ class Project {
     this.tasks.push(object);
   }
   removeTask(event) {
-    const tasksXButton = document.querySelectorAll(".task > div:last-child");
-
-    for (let i = 0; i < tasksXButton.length; i++) {
-      if (
-        tasksXButton[i].getAttribute("data-index") ===
-        event.currentTarget.getAttribute("data-index")
-      ) {
-        this.tasks[event.currentTarget.getAttribute("data-index")] = "";
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === event.currentTarget.parentNode.id) {
+        this.tasks.splice(i, 1);
       }
     }
   }
@@ -30,8 +25,11 @@ class Project {
   }
 }
 
+let i = 0;
+
 class Task {
   constructor(title, description, dueDate, priority) {
+    this.id = `task${i++}`;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
