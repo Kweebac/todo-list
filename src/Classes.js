@@ -1,7 +1,11 @@
-const current = {};
+let projectList = [];
+
+let i = 0;
 
 class Project {
   constructor(name) {
+    this.id = `project${i++}`;
+
     this.name = name;
     this.tasks = [];
   }
@@ -23,13 +27,16 @@ class Project {
   getName() {
     return this.name;
   }
+
+  static currentProject = undefined;
 }
 
-let i = 0;
+let j = 0;
 
 class Task {
   constructor(title, description, dueDate, priority) {
-    this.id = `task${i++}`;
+    this.id = `task${j++}`;
+
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
@@ -50,4 +57,4 @@ class Task {
   }
 }
 
-export { current, Project, Task };
+export { projectList, Project, Task };

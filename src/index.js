@@ -3,36 +3,36 @@
 modules: create new todo items, set todo items as complete, change todo priority,
 UI: view projects with todos inside, expend each todo, delete a todo
 When clicking each project it removes the current project UI 
-and puts the new one
+and puts the new one 
 
-click add task, form pops up, take form answers and put it into a new Task,
-which is saved to project, use it add to DOM
-
-add colors for tasks based on priority */
+when you click on a new project make it the currentProject*/
 
 import { DOM } from "./DOM";
-import { current, Project, Task } from "./Classes";
+import { current, projectList, Project, Task } from "./Classes";
 
-let defaultProject = new Project("Default");
-current.project = defaultProject;
+projectList.push(new Project("Default"));
+DOM.project.create(projectList[projectList.length - 1]);
+Project.currentProject = projectList[0];
 
 // on Add task click
 // shows form
 document.querySelector(".main > div:last-child").addEventListener("click", () => {
-  DOM.form.render();
-  document.querySelector("input[type=text]").focus();
+  DOM.form.renderForm();
 });
 
 // on Form ✖ click
 // hides form
-document.querySelector("form > div:first-child").addEventListener("click", DOM.form.unrender);
+document
+  .querySelector("form > div:first-child")
+  .addEventListener("click", DOM.form.unrenderForm);
 
 // on submit form click
 // converts form inputs into a task inside the current project, then gets rid of the menu, then adds the task in the UI
 document.querySelector("form button").addEventListener("click", (e) => {
+  if (document.querySelector("form #title").value === "") return;
   e.preventDefault();
 
-  current.project.addTask(
+  Project.currentProject.addTask(
     new Task(
       document.querySelector("form #title").value,
       document.querySelector("form #desc").value,
@@ -41,9 +41,11 @@ document.querySelector("form button").addEventListener("click", (e) => {
     )
   );
 
-  DOM.form.unrender();
+  DOM.form.unrenderForm();
 
-  DOM.task.create(current.project.getTasks()[current.project.getTasks().length - 1]);
+  DOM.task.create(
+    Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1]
+  );
 
   // expands tasks on click
   const tasks = document.querySelectorAll(".task");
@@ -51,8 +53,7 @@ document.querySelector("form button").addEventListener("click", (e) => {
 
   tasks[tasks.length - 1].addEventListener("click", (event) => {
     if (extended === false) {
-      DOM.task.change.extend(event);
-      extended = true;
+      if (DOM.task.change.extend(event)) extended = true;
     } else {
       DOM.task.change.unextend(event);
       extended = false;
@@ -67,7 +68,7 @@ document.querySelector("form button").addEventListener("click", (e) => {
     event.stopPropagation();
 
     DOM.task.remove(event);
-    current.project.removeTask(event);
+    Project.currentProject.removeTask(event);
   });
 
   // on Checkbox click
@@ -78,6 +79,28 @@ document.querySelector("form button").addEventListener("click", (e) => {
     event.stopPropagation();
 
     DOM.task.remove(event);
-    current.project.removeTask(event);
+    Project.currentProject.removeTask(event);
   });
 });
+
+// on Projects + button click
+// opens form
+document
+  .querySelector(".sidebar > div:first-child > div:last-child")
+  .addEventListener("click", () => {
+    DOM.form.renderProjectForm();
+  });
+
+// on Project form submit
+// creates project, adds it to DOM
+document.querySelector(".projectForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  projectList.push(new Project(document.querySelector(".projectForm #projectName").value));
+
+  DOM.project.create(projectList[projectList.length - 1]);
+  DOM.form.unrenderProjectForm();
+});
+
+// make it so it creates the project, then creates the DOM, make the defaultProject
+// DOM created on load not in html

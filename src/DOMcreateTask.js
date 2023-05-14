@@ -1,11 +1,12 @@
-import { current } from "./Classes";
+import { Project } from "./Classes";
 
 const mainDiv = document.querySelector(".main");
-let i = 0;
 
 function addColor(node) {
-  if (current.project.getTasks()[current.project.getTasks().length - 1].priority)
-    switch (current.project.getTasks()[current.project.getTasks().length - 1].priority) {
+  if (Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1].priority)
+    switch (
+      Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1].priority
+    ) {
       case "urgent":
         node.style.backgroundColor = "rgba(245, 93, 30, 0.3)";
         break;
@@ -21,7 +22,7 @@ function addColor(node) {
 function createTask(object) {
   const newDiv = document.createElement("div");
   newDiv.classList.add("task");
-  newDiv.id = `${current.project.getTasks()[current.project.getTasks().length - 1].id}`;
+  newDiv.id = object.id;
   newDiv.innerHTML = `
     <input type="checkbox" />
     <div>

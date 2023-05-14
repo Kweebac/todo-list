@@ -61,7 +61,6 @@ body > div {
   justify-content: space-between;
   align-items: center;
 }
-.sidebar > div:first-child:hover,
 .sidebar > .project:hover {
   background-color: #dedede;
 }
@@ -86,7 +85,7 @@ body > div {
   padding-left: 1rem;
 
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: auto 1fr auto;
   justify-content: start;
   align-items: center;
   gap: 0.2rem;
@@ -96,6 +95,45 @@ body > div {
 }
 .sidebar > .project > div {
   font-size: 0.9rem;
+}
+.sidebar > .project > div:last-child {
+  cursor: pointer;
+  height: 1.3rem;
+  width: 1.3rem;
+  color: rgb(154, 154, 154);
+  margin-right: 0.28rem;
+
+  display: grid;
+  place-items: center;
+}
+.sidebar > .project > div:last-child:hover {
+  border-radius: 50%;
+  background-color: rgb(255, 79, 79);
+}
+
+/* PROJECT FORM */
+.projectForm {
+  position: absolute;
+  visibility: hidden;
+
+  margin-top: -0.35rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #d3d3d3;
+  border-radius: 12px;
+
+  display: grid;
+  gap: 0.2rem;
+}
+.projectForm input {
+  font-size: 0.85rem;
+  padding: 0.2rem;
+  border-radius: 6px;
+  border: 1px solid gray;
+  width: 95%;
+}
+.projectForm label {
+  font-size: 0.85rem;
 }
 
 /* MAIN */
@@ -191,10 +229,11 @@ body > div {
 
 .task #desc {
   max-width: 35rem;
+  margin-bottom: 0.5rem;
 }
 
 /* FORM */
-form {
+.addTaskForm {
   position: absolute;
   place-self: center;
   visibility: hidden;
@@ -207,7 +246,7 @@ form {
   display: grid;
   gap: 0.5rem;
 }
-form > div {
+.addTaskForm > div {
   width: 30rem;
 
   display: grid;
@@ -217,7 +256,7 @@ form > div {
   gap: 0.5rem;
 }
 
-form > div:first-child {
+.addTaskForm > div:first-child {
   position: absolute;
   top: 8px;
   left: 11px;
@@ -232,26 +271,26 @@ form > div:first-child {
   grid-template-columns: auto;
   place-items: center;
 }
-form > div:first-child:hover {
+.addTaskForm > div:first-child:hover {
   background-color: rgb(255, 79, 79);
   border-radius: 50%;
 }
 
-form label {
+.addTaskForm label {
   justify-self: end;
 }
-form input[type="text"],
-form textarea {
+.addTaskForm input[type="text"],
+.addTaskForm textarea {
   width: 100%;
 }
-form input[type="datetime-local"],
-form select {
+.addTaskForm input[type="datetime-local"],
+.addTaskForm select {
   width: max-content;
 }
-form textarea {
+.addTaskForm textarea {
   resize: none;
 }
-form button {
+.addTaskForm button {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;

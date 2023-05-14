@@ -1,10 +1,21 @@
-const form = document.querySelector("form");
+const addTaskForm = document.querySelector(".addTaskForm");
 
 function renderForm() {
-  form.style.visibility = "visible";
+  addTaskForm.style.visibility = "visible";
 }
 function unrenderForm() {
-  form.style.visibility = "hidden";
+  addTaskForm.style.visibility = "hidden";
 }
 
-export { renderForm, unrenderForm };
+const projectForm = document.querySelector(".projectForm");
+
+function renderProjectForm() {
+  projectForm.style.visibility = "visible";
+  projectForm.style.position = "relative";
+}
+function unrenderProjectForm() {
+  projectForm.style.visibility = "hidden";
+  projectForm.style.position = "absolute";
+}
+
+export { renderForm, unrenderForm, renderProjectForm, unrenderProjectForm };
