@@ -1,5 +1,3 @@
-let projectList = [];
-
 let i = 0;
 
 class Project {
@@ -29,6 +27,15 @@ class Project {
   }
 
   static currentProject = undefined;
+  static projectList = [];
+
+  static removeProject(event) {
+    for (let i = 0; i < Project.projectList.length; i++) {
+      if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
+        Project.projectList.splice(i, 1);
+      }
+    }
+  }
 }
 
 let j = 0;
@@ -57,4 +64,4 @@ class Task {
   }
 }
 
-export { projectList, Project, Task };
+export { Project, Task };

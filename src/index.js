@@ -8,11 +8,7 @@ and puts the new one
 when you click on a new project make it the currentProject*/
 
 import { DOM } from "./DOM";
-import { current, projectList, Project, Task } from "./Classes";
-
-projectList.push(new Project("Default"));
-DOM.project.create(projectList[projectList.length - 1]);
-Project.currentProject = projectList[0];
+import { current, Project, Task } from "./Classes";
 
 // on Add task click
 // shows form
@@ -96,11 +92,31 @@ document
 document.querySelector(".projectForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  projectList.push(new Project(document.querySelector(".projectForm #projectName").value));
+  Project.projectList.push(
+    new Project(document.querySelector(".projectForm #projectName").value)
+  );
 
-  DOM.project.create(projectList[projectList.length - 1]);
+  DOM.project.create(Project.projectList[Project.projectList.length - 1]);
   DOM.form.unrenderProjectForm();
+
+  projectEventListeners();
 });
+
+function projectEventListeners() {
+  const projectDeleteButtons = document.querySelectorAll(".project > div:last-of-type");
+
+  // checks if currentProject is
+  projectDeleteButtons[projectDeleteButtons.length - 1].addEventListener("click", (event) => {
+    if (Project.currentProject.id === event.currentTarget.parentNode.id) return;
+    DOM.project.remove(event);
+    Project.removeProject(event);
+  });
+}
+
+Project.projectList.push(new Project("Default"));
+DOM.project.create(Project.projectList[Project.projectList.length - 1]);
+projectEventListeners();
+Project.currentProject = Project.projectList[0];
 
 // make it so it creates the project, then creates the DOM, make the defaultProject
 // DOM created on load not in html
