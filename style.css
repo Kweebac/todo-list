@@ -184,6 +184,11 @@ body > div {
 }
 
 /* TASKS */
+.tasks {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+}
 .task {
   border-radius: 10px;
   cursor: pointer;
