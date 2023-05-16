@@ -1,6 +1,7 @@
 import { Project } from "./Classes";
+import { DOM } from "./DOM";
 
-const mainDiv = document.querySelector(".main");
+const tasks = document.querySelector(".tasks");
 
 function addColor(node) {
   if (Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1].priority)
@@ -35,7 +36,42 @@ function createTask(object) {
   newDiv.querySelector("#dueDate").textContent = object.getDueDate();
   addColor(newDiv);
 
-  mainDiv.insertBefore(newDiv, document.querySelector(".main > div:last-child"));
+  tasks.appendChild(newDiv);
+
+  // expands tasks on click
+  const allTask = document.querySelectorAll(".task");
+  let extended = false;
+
+  allTask[allTask.length - 1].addEventListener("click", (event) => {
+    if (extended === false) {
+      if (DOM.task.change.extend(event)) extended = true;
+    } else {
+      DOM.task.change.unextend(event);
+      extended = false;
+    }
+  });
+
+  // on Task ✖ click
+  // removes task
+  const tasksXButton = document.querySelectorAll(".task > div:last-child");
+
+  tasksXButton[tasksXButton.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    DOM.task.remove(event);
+    Project.currentProject.removeTask(event);
+  });
+
+  // on Checkbox click
+  // removes task
+  const checkboxButtons = document.querySelectorAll(".task > input[type=checkbox]");
+
+  checkboxButtons[checkboxButtons.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    DOM.task.remove(event);
+    Project.currentProject.removeTask(event);
+  });
 }
 
 export { createTask };

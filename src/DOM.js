@@ -4,6 +4,8 @@ import { removeTask } from "./DOMremoveTask";
 import { extendTask, unextendTask } from "./DOMchangeTask";
 import { createProject } from "./DOMcreateProject";
 import { removeProject } from "./DOMremoveProject";
+import { createMain } from "./DOMcreateMain";
+import { resetTasks } from "./DOMresetTasks";
 
 const DOM = {
   form: {
@@ -23,6 +25,10 @@ const DOM = {
   project: {
     create: createProject,
     remove: removeProject,
+  },
+  main: {
+    reset: resetTasks,
+    create: createMain,
   },
 };
 

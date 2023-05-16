@@ -8,6 +8,17 @@ class Project {
     this.tasks = [];
   }
 
+  static currentProject = undefined;
+  static projectList = [];
+
+  static removeProject(event) {
+    for (let i = 0; i < Project.projectList.length; i++) {
+      if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
+        Project.projectList.splice(i, 1);
+      }
+    }
+  }
+
   addTask(object) {
     this.tasks.push(object);
   }
@@ -24,17 +35,6 @@ class Project {
   }
   getName() {
     return this.name;
-  }
-
-  static currentProject = undefined;
-  static projectList = [];
-
-  static removeProject(event) {
-    for (let i = 0; i < Project.projectList.length; i++) {
-      if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
-        Project.projectList.splice(i, 1);
-      }
-    }
   }
 }
 
