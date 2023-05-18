@@ -1,3 +1,5 @@
+import { saveProjects } from "./localeStorage";
+
 let i = 0;
 
 class Project {
@@ -6,6 +8,9 @@ class Project {
 
     this.name = name;
     this.tasks = [];
+
+    Project.projectList.push(this);
+    saveProjects();
   }
 
   static currentProject = undefined;
@@ -48,6 +53,9 @@ class Task {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+
+    Project.currentProject.addTask(this);
+    saveProjects();
   }
 
   getTitle() {

@@ -9,7 +9,10 @@ function createMain(event) {
     if (Project.projectList[i].id === event.currentTarget.id) {
       projectTitle.textContent = Project.projectList[i].getName();
     }
+  }
 
+  // adds the tasks
+  for (let i = 0; i < Project.currentProject.getTasks().length; i++) {
     if (Project.currentProject.getTasks()[i])
       DOM.task.create(Project.currentProject.getTasks()[i]);
   }

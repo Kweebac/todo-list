@@ -1,5 +1,6 @@
 import { DOM } from "./DOM";
-import { current, Project, Task } from "./Classes";
+import { Project, Task } from "./Classes";
+import { loadStorage } from "./localeStorage";
 
 // on Add task click
 // shows form
@@ -19,13 +20,11 @@ document.querySelector("form button").addEventListener("click", (e) => {
   if (document.querySelector("form #title").value === "") return;
   e.preventDefault();
 
-  Project.currentProject.addTask(
-    new Task(
-      document.querySelector("form #title").value,
-      document.querySelector("form #desc").value,
-      document.querySelector("form #dueDate").value,
-      document.querySelector("form #priority").value
-    )
+  new Task(
+    document.querySelector("form #title").value,
+    document.querySelector("form #desc").value,
+    `Due on ${new Date(document.querySelector("form #dueDate").value)}`,
+    document.querySelector("form #priority").value
   );
 
   DOM.form.unrenderForm();
@@ -48,9 +47,7 @@ document
 document.querySelector(".projectForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  Project.projectList.push(
-    new Project(document.querySelector(".projectForm #projectName").value)
-  );
+  new Project(document.querySelector(".projectForm #projectName").value);
 
   DOM.project.create(Project.projectList[Project.projectList.length - 1]);
   DOM.form.unrenderProjectForm();
@@ -63,6 +60,8 @@ function projectEventListeners() {
 
   // checks if currentProject is the same, then removes the project
   projectDeleteButtons[projectDeleteButtons.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
+
     if (Project.currentProject.id === event.currentTarget.parentNode.id) return;
 
     DOM.project.remove(event);
@@ -73,6 +72,8 @@ function projectEventListeners() {
 
   // sets currentProject to it, then loads the DOM
   projects[projects.length - 1].addEventListener("click", (event) => {
+    event.stopPropagation();
+
     // sets currentProject
     for (let i = 0; i < Project.projectList.length; i++) {
       if (Project.projectList[i].id === event.currentTarget.id) {
@@ -85,16 +86,9 @@ function projectEventListeners() {
   });
 }
 
-Project.projectList.push(new Project("Default"));
+loadStorage(); // loads projects first
+
+new Project("Default");
 DOM.project.create(Project.projectList[Project.projectList.length - 1]);
 projectEventListeners();
 Project.currentProject = Project.projectList[0];
-
-// ON TASK CREATE move the event listeners for tasks there
-
-/* make a defaultProject project and let them create other projects 
-
-modules: create new todo items, set todo items as complete, change todo priority,
-UI: view projects with todos inside, expend each todo, delete a todo
-When clicking each project it removes the current project UI 
-and puts the new one */
