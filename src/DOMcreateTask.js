@@ -3,19 +3,17 @@ import { DOM } from "./DOM";
 
 const tasks = document.querySelector(".tasks");
 
-function addColor(node) {
-  if (Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1].priority)
-    switch (
-      Project.currentProject.getTasks()[Project.currentProject.getTasks().length - 1].priority
-    ) {
+function addColor(newTask, priority) {
+  if (priority)
+    switch (priority) {
       case "urgent":
-        node.style.backgroundColor = "rgba(245, 93, 30, 0.3)";
+        newTask.style.backgroundColor = "rgba(245, 93, 30, 0.3)";
         break;
       case "important":
-        node.style.backgroundColor = "rgb(253, 152, 0, 0.3)";
+        newTask.style.backgroundColor = "rgb(253, 152, 0, 0.3)";
         break;
       case "unimportant":
-        node.style.backgroundColor = "rgb(181, 214, 167, 0.3)";
+        newTask.style.backgroundColor = "rgb(181, 214, 167, 0.3)";
         break;
     }
 }
@@ -34,7 +32,7 @@ function createTask(object) {
 
   newDiv.querySelector("#title").textContent = object.getTitle();
   newDiv.querySelector("#dueDate").textContent = object.getDueDate();
-  addColor(newDiv);
+  addColor(newDiv, object.getPriority());
 
   tasks.appendChild(newDiv);
 
