@@ -1,6 +1,6 @@
 import { loadStorage } from "./localeStorage";
 import { DOM } from "./DOM";
-import { Project, highestProjectID } from "./Classes";
+import { Project } from "./Classes";
 
 function storageEventListeners() {
   const projectDeleteButtons = document.querySelectorAll(".project > div:last-of-type");
@@ -9,14 +9,6 @@ function storageEventListeners() {
   projectDeleteButtons.forEach((item) => {
     item.addEventListener("click", (event) => {
       event.stopPropagation();
-
-      for (let i = 0; i < Project.projectList.length; i++) {
-        if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
-          if (Project.projectList[i].name === "Default") {
-            return;
-          }
-        }
-      }
 
       if (Project.currentProject.id === event.currentTarget.parentNode.id) return;
 
@@ -49,25 +41,35 @@ function pageLoad() {
   if (localStorage.getItem("projects")) {
     loadStorage();
 
-    // add event listeners for each project
-    // load default tasks with event listeners?
     Project.projectList.forEach((item) => {
       DOM.project.create(item);
     });
-    document.querySelectorAll(".projectForm").forEach(() => {
+    document.querySelectorAll(".project").forEach(() => {
       storageEventListeners();
     });
 
-    Project.currentProject = Project.projectList[0];
-  } else {
-    // new Project("Default");
-    // DOM.project.create(Project.projectList[0]);
-    // storageEventListeners();
-    // Project.currentProject = Project.projectList[0];
-  }
+    DOM.main.reset();
 
-  // highestProjectID = +localStorage.getItem("highestProjectID");
-  // highestTaskID = +localStorage.getItem("highestTaskID");
+    const projectTitle = document.querySelector(".main > div:first-child");
+
+    // sets project title
+    for (let i = 0; i < Project.projectList.length; i++) {
+      if (Project.projectList[i].id === document.querySelector(".project").id) {
+        projectTitle.textContent = Project.projectList[i].getName();
+      }
+    }
+
+    // adds the tasks
+    for (let i = 0; i < Project.currentProject.getTasks().length; i++) {
+      if (Project.currentProject.getTasks()[i])
+        DOM.task.create(Project.currentProject.getTasks()[i]);
+    }
+  } else {
+    new Project("Default");
+    DOM.project.create(Project.projectList[0]);
+    storageEventListeners();
+    Project.currentProject = Project.projectList[0];
+  }
 }
 
 export { pageLoad };

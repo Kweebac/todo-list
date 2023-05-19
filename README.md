@@ -1,3 +1,3 @@
-start with no projects by default and get that working with localStorage
+# To-do:
 
-then create default and make it deletable
+Load first projects tasks

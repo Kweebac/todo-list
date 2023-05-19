@@ -1,17 +1,26 @@
 import { saveProjects } from "./localeStorage";
 
-let highestProjectID = 0;
-
 class Project {
   constructor(name) {
-    this.id = `project${highestProjectID++}`;
+    if (document.querySelectorAll(".project").length === 0) {
+      this.id = "project0";
+    } else {
+      this.id = `project${
+        +document
+          .querySelectorAll(".project")
+          [document.querySelectorAll(".project").length - 1].id.split("")[
+          document
+            .querySelectorAll(".project")
+            [document.querySelectorAll(".project").length - 1].id.split("").length - 1
+        ] + 1
+      }`;
+    }
 
     this.name = name;
     this.tasks = [];
 
     Project.projectList.push(this);
     saveProjects();
-    // localStorage.setItem("highestProjectID", `${highestProjectID}`);
   }
 
   static currentProject = undefined;
@@ -46,11 +55,21 @@ class Project {
   }
 }
 
-let highestTaskID = 0;
-
 class Task {
   constructor(title, description, dueDate, priority) {
-    this.id = `task${highestTaskID++}`;
+    if (document.querySelectorAll(".task").length === 0) {
+      this.id = "task0";
+    } else {
+      this.id = `task${
+        +document
+          .querySelectorAll(".task")
+          [document.querySelectorAll(".task").length - 1].id.split("")[
+          document
+            .querySelectorAll(".task")
+            [document.querySelectorAll(".task").length - 1].id.split("").length - 1
+        ] + 1
+      }`;
+    }
 
     this.title = title;
     this.description = description;
@@ -59,7 +78,6 @@ class Task {
 
     Project.currentProject.addTask(this);
     saveProjects();
-    // localStorage.setItem("highestTaskID", `${highestTaskID}`);
   }
 
   getTitle() {
@@ -76,4 +94,4 @@ class Task {
   }
 }
 
-export { Project, Task, highestProjectID, highestTaskID };
+export { Project, Task };
