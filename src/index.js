@@ -62,15 +62,6 @@ function projectEventListeners() {
   projectDeleteButtons[projectDeleteButtons.length - 1].addEventListener("click", (event) => {
     event.stopPropagation();
 
-    for (let i = 0; i < Project.projectList.length; i++) {
-      if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
-        if (Project.projectList[i].name === "Default") {
-          console.log(2);
-          return;
-        }
-      }
-    }
-
     if (Project.currentProject.id === event.currentTarget.parentNode.id) return;
 
     DOM.project.remove(event);
@@ -96,5 +87,3 @@ function projectEventListeners() {
 }
 
 pageLoad();
-
-export { projectEventListeners };

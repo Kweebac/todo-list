@@ -1,16 +1,17 @@
 import { saveProjects } from "./localeStorage";
 
-let i = 0;
+let highestProjectID = 0;
 
 class Project {
   constructor(name) {
-    this.id = `project${i++}`;
+    this.id = `project${highestProjectID++}`;
 
     this.name = name;
     this.tasks = [];
 
     Project.projectList.push(this);
     saveProjects();
+    // localStorage.setItem("highestProjectID", `${highestProjectID}`);
   }
 
   static currentProject = undefined;
@@ -45,11 +46,11 @@ class Project {
   }
 }
 
-let j = 0;
+let highestTaskID = 0;
 
 class Task {
   constructor(title, description, dueDate, priority) {
-    this.id = `task${j++}`;
+    this.id = `task${highestTaskID++}`;
 
     this.title = title;
     this.description = description;
@@ -58,6 +59,7 @@ class Task {
 
     Project.currentProject.addTask(this);
     saveProjects();
+    // localStorage.setItem("highestTaskID", `${highestTaskID}`);
   }
 
   getTitle() {
@@ -74,4 +76,4 @@ class Task {
   }
 }
 
-export { Project, Task };
+export { Project, Task, highestProjectID, highestTaskID };
