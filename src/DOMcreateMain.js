@@ -6,6 +6,7 @@ function createMain(event) {
 
   // sets project title
   for (let i = 0; i < Project.projectList.length; i++) {
+    // sets the title
     if (Project.projectList[i].id === event.currentTarget.id) {
       projectTitle.textContent = Project.projectList[i].getName();
     }

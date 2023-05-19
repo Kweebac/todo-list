@@ -22,6 +22,7 @@ class Project {
         Project.projectList.splice(i, 1);
       }
     }
+    saveProjects();
   }
 
   addTask(object) {
@@ -33,6 +34,7 @@ class Project {
         this.tasks.splice(i, 1);
       }
     }
+    saveProjects();
   }
 
   getTasks() {

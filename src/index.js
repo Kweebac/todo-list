@@ -1,12 +1,12 @@
 import { DOM } from "./DOM";
 import { Project, Task } from "./Classes";
-import { loadStorage } from "./localeStorage";
+import { pageLoad } from "./pageLoad";
 
 // on Add task click
 // shows form
-document.querySelector(".main > div:last-child").addEventListener("click", () => {
+document.querySelector(".main > div:last-child").onclick = () => {
   DOM.form.renderForm();
-});
+};
 
 // on Form ✖ click
 // hides form
@@ -62,6 +62,15 @@ function projectEventListeners() {
   projectDeleteButtons[projectDeleteButtons.length - 1].addEventListener("click", (event) => {
     event.stopPropagation();
 
+    for (let i = 0; i < Project.projectList.length; i++) {
+      if (Project.projectList[i].id === event.currentTarget.parentNode.id) {
+        if (Project.projectList[i].name === "Default") {
+          console.log(2);
+          return;
+        }
+      }
+    }
+
     if (Project.currentProject.id === event.currentTarget.parentNode.id) return;
 
     DOM.project.remove(event);
@@ -86,9 +95,6 @@ function projectEventListeners() {
   });
 }
 
-loadStorage(); // loads projects first
+pageLoad();
 
-new Project("Default");
-DOM.project.create(Project.projectList[Project.projectList.length - 1]);
-projectEventListeners();
-Project.currentProject = Project.projectList[0];
+export { projectEventListeners };
